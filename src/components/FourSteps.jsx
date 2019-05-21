@@ -5,10 +5,6 @@ import Btn from './Btn/Btn';
 import DecorationText from "./DecorationText";
 
 class FourSteps extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         /**
          * Zastanów się, jak tu użyć map-a :)

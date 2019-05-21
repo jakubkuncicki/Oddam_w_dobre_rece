@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './About.scss';
-import DecorationText from '../components/DecorationText';
+import DecorationText from '../DecorationText';
 
 class About extends React.Component {
     render() {

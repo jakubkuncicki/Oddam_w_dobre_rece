@@ -24,7 +24,7 @@ export class InstitutionsList extends React.Component {
     }
 
     render() {
-        let institutions = this.props.institutions;
+        let institutions = this.props.institutions || [];
         let pagesNumber = Math.ceil(institutions.length / 3);
 
         let tab = [];
