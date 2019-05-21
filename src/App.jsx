@@ -1,10 +1,12 @@
 import React from 'react';
-import './App.scss';
+
 import Header from './components/Header';
 import Stats from "./components/Stats";
 import FourSteps from "./components/FourSteps";
-import About from "./components/About";
+import About from "./components/About/About";
 import Institutions from "./components/Institutions";
+
+import './App.scss';
 
 function App() {
   return (

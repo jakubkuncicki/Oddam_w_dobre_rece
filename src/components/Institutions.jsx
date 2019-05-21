@@ -1,8 +1,9 @@
+import localforage from 'localforage';
 import React from 'react';
-import InstitutionsList from '../components/InstitutionsList';
+
+import { InstitutionsList } from './InstitutionsList';
 import '../components/Institutions.scss';
 import DecorationText from "./DecorationText";
-import localforage from 'localforage';
 
 class Institutions extends React.Component {
     constructor(props) {
@@ -22,7 +23,7 @@ class Institutions extends React.Component {
     }
 
     changeInstitutionType = (e) => {
-        if(e.target.innerText === 'Fundacjom') {
+        if (e.target.innerText === 'Fundacjom') {
 
             localforage.getItem('fundations').then( (value) => {
                 this.setState({
@@ -57,7 +58,8 @@ class Institutions extends React.Component {
             <section className='institutionsBg'>
                 <DecorationText text1='Komu pomagamy?' text2=''/>
                 <ul>
-                    <li onClick={this.changeInstitutionType}>Fundacjom</li>
+                    {/* Wybierz sobie jedno z podejść - albo name albo arrow jak poniżej */}
+                    <li name="foundations" onClick={(event) => this.changeInstitutionType(event, 'foundations')}>Fundacjom</li>
                     <li onClick={this.changeInstitutionType}>Organizacjom pozarządowym</li>
                     <li onClick={this.changeInstitutionType}>Lokalnym zbiórkom</li>
                 </ul>

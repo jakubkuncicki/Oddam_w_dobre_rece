@@ -1,5 +1,8 @@
 import React from 'react';
-import '../components/Btn.scss';
+import './Btn.scss';
+
+// A może flex-grow w obrębie kontenera?
+// Sprawdź sobie flex-basis
 
 class Btn extends React.Component {
     render() {

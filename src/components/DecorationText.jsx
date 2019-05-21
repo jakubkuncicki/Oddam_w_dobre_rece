@@ -7,6 +7,11 @@ class DecorationText extends React.Component {
     }
 
     render() {
+        /*
+         * props.texts
+         * { this.props.texts.map((text) => <h1>{text}</h1>) }
+         */
+
         return (
             <div className='decorationTextBox'>
                 <h1>{this.props.text1}</h1>

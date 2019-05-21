@@ -1,9 +1,9 @@
-@import "../styles/variables";
+@import "../../styles/variables";
 
 .about {
   height: 100vh;
   width: 100%;
-  background-color: #ebebeb;
+  background-color: #ebebeb; // To może to do _variables.scss ?
   display: flex;
   align-items: center;
 
@@ -31,7 +31,7 @@
       .signature {
         height: 20vh;
         width: 20vh;
-        background-image: url("../images/Vector Smart Object-pdf.png");
+        background-image: url("Vector Smart Object-pdf.png");
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
@@ -42,7 +42,7 @@
   .aboutPicture {
     flex: 52;
     height: 90%;
-    background-image: url("../images/about.jpg");
+    background-image: url("about.jpg");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;

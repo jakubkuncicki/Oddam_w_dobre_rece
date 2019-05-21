@@ -1,7 +1,7 @@
 import React from 'react';
 import FourStepsColumn from '../components/FourStepsColumn';
 import '../components/FourSteps.scss';
-import Btn from '../components/Btn';
+import Btn from './Btn/Btn';
 import DecorationText from "./DecorationText";
 
 class FourSteps extends React.Component {
@@ -10,6 +10,11 @@ class FourSteps extends React.Component {
     }
 
     render() {
+        /**
+         * Zastanów się, jak tu użyć map-a :)
+         * const columnData = [{}, {}, {}, {}];
+         * columnData.map();
+         */
         return (
             <section className='fourSteps'>
                 <DecorationText text1='Wystarczą 4 proste kroki' text2=''/>

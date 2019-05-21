@@ -1,7 +1,7 @@
 import React from 'react';
 import '../components/Header.scss';
 import DecorationText from '../components/DecorationText.jsx';
-import Btn from '../components/Btn.jsx';
+import Btn from './Btn/Btn.jsx';
 
 class Header extends React.Component{
     constructor(props) {
