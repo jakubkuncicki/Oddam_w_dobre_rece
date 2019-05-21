@@ -1,0 +1,15 @@
+@import "../styles/variables";
+
+button {
+  outline: none;
+  border: 2px solid dimgrey;
+  font-size: 4.5vh;
+  background-color: white;
+  color: #3c3c3c;
+  width: 19vw;
+  box-sizing: border-box;
+  text-align: center;
+  padding: 1vh 2vw;
+  font-weight: normal;
+  font-family: 'open_sans_lightregular', sans-serif;
+}

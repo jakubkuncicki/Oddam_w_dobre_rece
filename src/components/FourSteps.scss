@@ -1,0 +1,18 @@
+.fourSteps {
+  height: 80vh;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+
+  .fourStepsCenter {
+    height: 35vh;
+    width: 70vw;
+    background-color: #ebebeb;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+}

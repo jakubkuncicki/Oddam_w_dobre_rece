@@ -1,0 +1,33 @@
+@import "../styles/variables";
+
+.institutionsBg {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  ul {
+    list-style: none;
+
+    li {
+      margin: 0 3vw;
+      box-sizing: border-box;
+      padding: 1vh 1vw;
+      display: inline-block;
+      width: 15vw;
+      font-family: 'open_sansregular', sans-serif;
+      font-size: 2.4vh;
+      color: #3c3c3c;
+      text-align: center;
+    }
+  }
+
+  p {
+    text-align: center;
+    font-family: 'open_sansregular', sans-serif;
+    font-size: 2vh;
+    color: #3c3c3c;
+  }
+}

@@ -1,0 +1,49 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: 'merriweather_lightitalic';
+  src: url('../fonts/merriweather/merriweather-lightitalic.woff2') format('woff2'),
+  url('../fonts/merriweather/merriweather-lightitalic.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+@font-face {
+  font-family: 'merriweather_lightregular';
+  src: url('../fonts/merriweather/merriweather-light.woff2') format('woff2'),
+  url('../fonts/merriweather/merriweather-light.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+@font-face {
+  font-family: 'merriweatherregular';
+  src: url('../fonts/merriweather/merriweather-regular.woff2') format('woff2'),
+  url('../fonts/merriweather/merriweather-regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+@font-face {
+  font-family: 'open_sansregular';
+  src: url('../fonts/opensans/opensans-regular.woff2') format('woff2'),
+  url('../fonts/opensans/opensans-regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+@font-face {
+  font-family: 'open_sans_lightregular';
+  src: url('../fonts/opensans/opensans-light.woff2') format('woff2'),
+  url('../fonts/opensans/opensans-light.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}

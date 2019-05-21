@@ -1,0 +1,26 @@
+@import '../styles/variables';
+
+.stats__column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h3 {
+    margin: 1vh 0 2vh;
+    font-family: 'open_sansregular', sans-serif;
+  }
+
+  span {
+    font-size: 8vh;
+    font-family: 'open_sans_lightregular', sans-serif;
+  }
+
+  p {
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0 4.5vw 2vh;
+    font-family: 'merriweather_lightregular', sans-serif;
+  }
+}

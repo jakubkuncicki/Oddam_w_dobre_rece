@@ -1,0 +1,64 @@
+@import "../styles/variables";
+
+.fourStepsColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 16vh;
+  height: 24vh;
+
+  .fourStepsColumn__container {
+    height: 17vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    span {
+      font-size: 2vh;
+      border-bottom-style: solid;
+      border-color: #3c3c3c;
+      border-width: 0 0 0.2vh;
+      box-sizing: border-box;
+      padding: 0 0 1vh;
+    }
+  }
+
+  @for $i from 1 through 4 {
+    .icon#{$i} {
+
+      height: 10vh;
+      width: 10vh;
+      background-repeat: no-repeat;
+      background-size: contain;
+
+      $iconId: 0;
+
+      @if $i == 1 {
+        $iconId: 28;
+      }
+      @if $i == 2 {
+        $iconId: '016';
+      }
+      @if $i == 3 {
+        $iconId: '039';
+      }
+      @if $i == 4 {
+        $iconId: '58';
+      }
+
+      $url: '../images/' + $iconId + '.png';
+
+      background-image: url($url);
+
+    }
+  }
+
+  span {
+    font-family: 'open_sansregular', sans-serif;
+    font-size: 1.7vh;
+    color: #3c3c3c;
+  }
+
+}

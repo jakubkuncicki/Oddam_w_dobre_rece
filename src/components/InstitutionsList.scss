@@ -1,0 +1,72 @@
+@import '../styles/variables';
+
+.institutions {
+  margin: 0 auto;
+  height: 50%;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+
+  &__list {
+    flex: 9;
+    width: 100%;
+
+    .institutionRow {
+      height: calc(100%/3);
+      display: flex;
+      justify-content: space-between;
+
+      .institutionName {
+        text-align: left;
+
+        h3 {
+          font-family: 'open_sansregular', sans-serif;
+          font-size: 3vh;
+          color: #3c3c3c;
+        }
+
+        p {
+          font-family: 'merriweather_lightitalic', sans-serif;
+          font-size: 1.5vh;
+          color: #3c3c3c;
+        }
+      }
+
+      .institutionDescription {
+        text-align: right;
+        box-sizing: border-box;
+        padding-top: 3vh;
+
+        p {
+          font-family: 'open_sansregular', sans-serif;
+          font-size: 1.5vh;
+          color: #3c3c3c;
+        }
+      }
+
+      .line {
+        height: 1vh;
+        width: 100%;
+        border-width: 0 0 0.3vh;
+        border-style: solid;
+        border-color: #3c3c3c;
+      }
+    }
+  }
+
+  .pageNumbers {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    span {
+      margin: 0 1vw;
+      box-sizing: border-box;
+      padding: 1vh 1vw;
+      font-size: 3vh;
+      font-family: 'open_sansregular', sans-serif;
+      color: #3c3c3c;
+    }
+  }
+}
