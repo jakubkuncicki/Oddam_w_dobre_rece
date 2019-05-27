@@ -1,12 +1,20 @@
 import React from 'react';
-import '../components/Header.scss';
-import DecorationText from '../components/DecorationText.jsx';
-import Btn from '../components/Btn.jsx';
+
+import DecorationText from '../DecorationText/DecorationText.jsx';
+import Btn from '../Btn/Btn.jsx';
+
+import './Header.scss';
 
 class Header extends React.Component{
     constructor(props) {
         super(props);
     }
+
+    scrollTo = (name) => {
+        if(typeof this.props.scrollTo === 'function') {
+            this.props.scrollTo(name);
+        }
+    };
 
     render() {
         return (
@@ -18,16 +26,16 @@ class Header extends React.Component{
                             <li><a>Załóż konto</a></li>
                         </ul>
                         <ul className='menu'>
-                            <li><a>Start</a></li>
-                            <li><a>O co chodzi?</a></li>
-                            <li><a>O nas</a></li>
-                            <li><a>Fundacje i organizacje</a></li>
-                            <li><a>Kontakt</a></li>
+                            <li><a onClick={() => this.scrollTo('headerSection')}>Start</a></li>
+                            <li><a onClick={() => this.scrollTo('fourSteps')}>O co chodzi?</a></li>
+                            <li><a onClick={() => this.scrollTo('about')}>O nas</a></li>
+                            <li><a onClick={() => this.scrollTo('institutionsBg')}>Fundacje i organizacje</a></li>
+                            <li><a onClick={() => this.scrollTo('Contact')}>Kontakt</a></li>
                         </ul>
                     </nav>
                 </header>
                 <div className='headerStart'>
-                    <DecorationText text1='Zacznij pomagać!' text2='Oddaj niechciane rzeczy w zaufane ręce'/>
+                    <DecorationText texts={['Zacznij pomagać!', 'Oddaj niechciane rzeczy w zaufane ręce']}/>
                     <div className='StartBtns'>
                         <Btn text='ODDAJ RZECZY'/>
                         <Btn text='ZORGANIZUJ ZBIÓRKĘ'/>

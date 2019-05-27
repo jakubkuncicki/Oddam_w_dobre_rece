@@ -1,13 +1,15 @@
 import React from 'react';
-import '../components/About.scss';
-import DecorationText from '../components/DecorationText';
+
+import DecorationText from '../../components/DecorationText/DecorationText';
+
+import './About.scss';
 
 class About extends React.Component {
     render() {
         return (
             <section className='about'>
                 <div className='about__text'>
-                    <DecorationText text1='O nas' text2=''/>
+                    <DecorationText texts={['O nas']}/>
                     <p>
                         Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens parsnip.
                     </p>

@@ -1,10 +1,11 @@
 import React from 'react';
-import '../components/FourStepsColumn.scss';
+
+import './FourStepsColumn.scss';
 
 class FourStepsColumn extends React.Component {
-    constructor(props){
-        super(props);
-    }
+    // constructor(props){
+    //     super(props);
+    // }
 
     render() {
         const icon = 'icon' + this.props.iconNumber;

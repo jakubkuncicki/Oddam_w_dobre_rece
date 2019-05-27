@@ -1,10 +1,11 @@
 import React from 'react';
-import '../components/StatsColumn.scss';
+
+import './StatsColumn.scss';
 
 class StatsColumn extends React.Component {
-    constructor(props){
-        super(props);
-    }
+    // constructor(props){
+    //     super(props);
+    // }
 
     render() {
         return (

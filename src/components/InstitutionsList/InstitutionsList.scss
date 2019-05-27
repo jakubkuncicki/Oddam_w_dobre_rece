@@ -1,4 +1,5 @@
-@import '../styles/variables';
+//@import '../../styles/variables';
+@import "../../styles/fonts";
 
 .institutions {
   margin: 0 auto;
@@ -17,37 +18,41 @@
       justify-content: space-between;
 
       .institutionName {
-        text-align: left;
 
         h3 {
           font-family: 'open_sansregular', sans-serif;
+          font-weight: normal;
           font-size: 3vh;
           color: #3c3c3c;
+          text-align: left;
         }
 
         p {
+          margin-top: 1vh;
           font-family: 'merriweather_lightitalic', sans-serif;
           font-size: 1.5vh;
           color: #3c3c3c;
+          text-align: left;
+          width: 26vw;
         }
       }
 
       .institutionDescription {
-        text-align: right;
         box-sizing: border-box;
-        padding-top: 3vh;
+        padding-top: 4vh;
 
         p {
           font-family: 'open_sansregular', sans-serif;
           font-size: 1.5vh;
           color: #3c3c3c;
+          text-align: right;
         }
       }
 
       .line {
         height: 1vh;
         width: 100%;
-        border-width: 0 0 0.3vh;
+        border-width: 0 0 0.2vh;
         border-style: solid;
         border-color: #3c3c3c;
       }
@@ -67,6 +72,16 @@
       font-size: 3vh;
       font-family: 'open_sansregular', sans-serif;
       color: #3c3c3c;
+      border: 1px solid transparent;
+
+      &:hover {
+        cursor: pointer;
+        box-shadow: 0 0 10px 1px dimgray;
+      }
+
+      &.active {
+        border: 1px solid black;
+      }
     }
   }
 }

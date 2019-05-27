@@ -1,4 +1,5 @@
-@import "../styles/variables";
+//@import "../../styles/variables";
+@import "../../styles/fonts";
 
 .institutionsBg {
   height: 100vh;
@@ -10,17 +11,30 @@
 
   ul {
     list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50vw;
 
     li {
-      margin: 0 3vw;
       box-sizing: border-box;
-      padding: 1vh 1vw;
+      padding: 1vh .5vw;
       display: inline-block;
-      width: 15vw;
+      width: 10vw;
       font-family: 'open_sansregular', sans-serif;
       font-size: 2.4vh;
       color: #3c3c3c;
       text-align: center;
+      border: 1px solid transparent;
+
+      &:hover {
+        cursor: pointer;
+        box-shadow: 0 0 10px 1px dimgray;
+      }
+
+      &.active {
+        border: 1px solid black;
+      }
     }
   }
 
@@ -28,6 +42,7 @@
     text-align: center;
     font-family: 'open_sansregular', sans-serif;
     font-size: 2vh;
+    width: 25vw;
     color: #3c3c3c;
   }
 }

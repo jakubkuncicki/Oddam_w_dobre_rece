@@ -1,9 +1,10 @@
-@import "../styles/variables";
+//@import "../../styles/variables";
+@import "../../styles/fonts";
 
 .headerSection {
   width: 100%;
-  height: 85vh;
-  background-image: url("../images/header_start_img.jpg");
+  height: 80vh;
+  background-image: url("header_start_img.jpg");
   background-repeat: no-repeat;
   background-size: contain;
   display: flex;
@@ -20,19 +21,42 @@
   justify-content: space-evenly;
   align-items: flex-end;
   font-family: 'open_sansregular', sans-serif;
+
+  li {
+    box-sizing: border-box;
+    padding: 5px 10px;
+    border: 1px solid transparent;
+
+    &:hover {
+      cursor: pointer;
+      border: 1px solid black;
+      box-shadow: 0 0 10px 1px dimgray;
+    }
+  }
 }
 
 .menu.upperMenu li {
-  font-size: 2vh;
-  color: #737373;
+  &:hover {
+    border: 1px solid #f8c60f;
+    box-shadow: 0 0 10px 1px #f8c60f;
+  }
+
+  a {
+    font-size: 1.7vh;
+    color: #737373;
+  }
 }
 
 .menu li {
   display: inline-block;
-  margin-left: 3vw;
-  color: #3c3c3c;
+  margin-left: 2vw;
   list-style: none;
-  font-size: 3vh;
+
+  a {
+    color: #3c3c3c;
+    font-size: 2.5vh;
+  }
+
 }
 
 .headerStart {

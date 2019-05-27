@@ -1,0 +1,130 @@
+.Contact {
+  height: 100vh;
+  width: 100%;
+  background-image: url("footer_bg_img.jpg");
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: #eeefef;
+
+  &__main {
+    height: 90%;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    box-sizing: border-box;
+    padding: 12vh 5vw;
+
+    &_box {
+      height: 100%;
+      width: 35%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    &_form {
+      height: 65%;
+      display: flex;
+      flex-direction: column;
+
+      p {
+        text-align: left;
+        flex: .5;
+      }
+
+      .inputs_container {
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+
+        div {
+          width: 45%;
+        }
+
+        input {
+          height: 50%;
+          width: 100%;
+          box-sizing: border-box;
+          outline: none;
+          background-color: transparent;
+          border-width: 0 0 2px;
+          border-color: #3c3c3c;
+          border-style: solid;
+        }
+      }
+
+      .textarea_container {
+        flex: 1;
+
+        input {
+          height: 50%;
+          width: 100%;
+          box-sizing: border-box;
+          outline: none;
+          background-color: transparent;
+          border-width: 0 0 2px;
+          border-color: #3c3c3c;
+          border-style: solid;
+        }
+      }
+
+      .submit_container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        input {
+          border: 1px solid black;
+          background-color: transparent;
+          height: 40%;
+          padding: 0 30px;
+
+          &:hover {
+            cursor: pointer;
+            box-shadow: 0 0 10px 1px dimgray;
+          }
+        }
+      }
+
+      .error_info {
+        width: 100%;
+        height: 50%;
+        line-height: 40px;
+        color: red;
+      }
+    }
+  }
+
+  &__footer {
+    height: 10%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    &_text {
+      width: 60%;
+      text-align: right;
+    }
+
+    &_icons {
+      width: 40%;
+      padding-right: 10vw;
+      display: flex;
+      justify-content: flex-end;
+
+      i {
+        font-size: 20px;
+        border: 1px solid black;
+        box-sizing: border-box;
+        padding: 10px;
+        margin-right: 10px;
+
+        &:first-of-type {
+          padding: 10px 13px;
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,5 @@
-@import '../styles/variables';
+//@import '../../styles/variables';
+@import "../../styles/fonts";
 
 .stats__column {
   flex: 1;
@@ -13,7 +14,7 @@
   }
 
   span {
-    font-size: 8vh;
+    font-size: 7vh;
     font-family: 'open_sans_lightregular', sans-serif;
   }
 

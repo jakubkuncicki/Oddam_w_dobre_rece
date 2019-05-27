@@ -1,4 +1,5 @@
-@import "../styles/variables";
+//@import "../../styles/variables";
+@import "../../styles/fonts";
 
 .fourStepsColumn {
   display: flex;
@@ -14,6 +15,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    text-align: center;
 
     span {
       font-size: 2vh;
@@ -48,7 +50,7 @@
         $iconId: '58';
       }
 
-      $url: '../images/' + $iconId + '.png';
+      $url: $iconId + '.png';
 
       background-image: url($url);
 
@@ -59,6 +61,7 @@
     font-family: 'open_sansregular', sans-serif;
     font-size: 1.7vh;
     color: #3c3c3c;
+    text-align: center;
   }
 
 }

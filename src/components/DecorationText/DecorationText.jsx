@@ -1,16 +1,19 @@
 import React from 'react';
-import '../components/DecorationText.scss';
+
+import './DecorationText.scss';
 
 class DecorationText extends React.Component {
-    constructor(props){
-        super(props);
-    }
+    // constructor(props){
+    //     super(props);
+    // }
 
     render() {
+
+        const textLines = this.props.texts.map((text) => <h1 key={text}>{text}</h1>);
+
         return (
             <div className='decorationTextBox'>
-                <h1>{this.props.text1}</h1>
-                {this.props.text2 !== '' && <h1>{this.props.text2}</h1>}
+                {textLines}
                 <div className='decoration'></div>
             </div>
         );
