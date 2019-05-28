@@ -2,6 +2,15 @@ import localforage from 'localforage';
 import { FOUNDATIONS, ORGANIZATIONS, COLLECTIONS } from "../constants/cacheItems";
 
 export class InstitutionsData {
+    static instanceVal = null;
+
+    static get instance() {
+        if (!this.instanceVal) {
+            this.instanceVal = new InstitutionsData();
+        }
+
+        return this.instanceVal;
+    }
 
     init = () => {
         localforage.config();
@@ -82,10 +91,11 @@ export class InstitutionsData {
 
     saveFoundation = (foundation) => {
         let foundations = [];
-        this.getInstitutions(FOUNDATIONS).then((value) => {
+
+        return this.getInstitutions(FOUNDATIONS).then((value) => {
             foundations = value;
             foundations.push(foundation);
-            localforage.setItem(FOUNDATIONS, foundations);
+            return localforage.setItem(FOUNDATIONS, foundations);
         });
     };
 

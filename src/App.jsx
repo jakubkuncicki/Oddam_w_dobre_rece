@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from "react-router-dom";
 
 import Header from './components/Header/Header';
 import Stats from "./components/Stats/Stats";
@@ -6,18 +7,16 @@ import FourSteps from "./components/FourSteps/FourSteps";
 import About from "./components/About/About";
 import Institutions from "./components/Institutions/Institutions";
 import Contact from "./components/Contact/Contact";
-import {InstitutionsData} from "./services/institutions.service";
+import { InstitutionsData } from "./services/institutions.service";
 
 import './App.scss';
-import {Events, scroller} from "react-scroll/modules";
+import { Events, scroller } from "react-scroll/modules";
 
-export const institutions = new InstitutionsData();
-institutions.init();
+InstitutionsData.instance.init();
 
 class App extends React.Component {
 
     componentDidMount() {
-
         Events.scrollEvent.register('begin', function () {
             console.log("begin", arguments);
         });
@@ -29,6 +28,8 @@ class App extends React.Component {
     }
 
     scrollTo = (name) => {
+        this.props.history.push(name);
+
         scroller.scrollTo(name, {
             duration: 800,
             delay: 0,
@@ -55,4 +56,4 @@ class App extends React.Component {
     }
 }
 
-export default App;
+export default withRouter(App);
