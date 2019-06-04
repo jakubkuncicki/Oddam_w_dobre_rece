@@ -1,5 +1,4 @@
 //@import '../../styles/variables';
-@import "../../styles/fonts";
 
 .institutions {
   margin: 0 auto;
@@ -73,10 +72,12 @@
       font-family: 'open_sansregular', sans-serif;
       color: #3c3c3c;
       border: 1px solid transparent;
+      transition-duration: .3s;
 
       &:hover {
         cursor: pointer;
-        box-shadow: 0 0 10px 1px dimgray;
+        //box-shadow: 0 0 10px 1px dimgray;
+        background-color: darken(white, 5%);
       }
 
       &.active {

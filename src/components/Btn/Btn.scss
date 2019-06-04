@@ -1,7 +1,6 @@
 //@import "../../styles/variables";
-@import "../../styles/fonts";
 
-button {
+button.Btn {
   outline: none;
   border: 2px solid dimgrey;
   font-size: 4.5vh;
@@ -13,9 +12,11 @@ button {
   padding: 1vh 2vw;
   font-weight: normal;
   font-family: 'open_sans_lightregular', sans-serif;
+  transition-duration: .3s;
 
   &:hover {
     cursor: pointer;
-    box-shadow: 0 0 15px 1px black;
+    //box-shadow: 0 0 15px 1px black;
+    background-color: darken(white, 5%);
   }
 }

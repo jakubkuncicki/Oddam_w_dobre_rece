@@ -1,8 +1,9 @@
 import React from 'react';
+import {Element} from 'react-scroll';
 
 import InstitutionsList from '../InstitutionsList/InstitutionsList';
 import DecorationText from "../DecorationText/DecorationText";
-import {institutions} from "../../App";
+import { InstitutionsData } from "../../services/institutions.service";
 
 import './Institutions.scss';
 
@@ -17,7 +18,7 @@ class Institutions extends React.Component {
 
     componentDidMount() {
 
-        institutions.getInstitutions(this.state.institutionType).then( (value) => {
+        InstitutionsData.instance.getInstitutions(this.state.institutionType).then( (value) => {
             this.setState({
                 institutionsTab: value,
             });
@@ -31,7 +32,7 @@ class Institutions extends React.Component {
 
         const institutionsType = e.target.id;
 
-        institutions.getInstitutions(institutionsType).then( (value) => {
+        InstitutionsData.instance.getInstitutions(institutionsType).then( (value) => {
 
             this.setState({
                 institutionType: institutionsType,
@@ -44,6 +45,7 @@ class Institutions extends React.Component {
 
     render() {
         return (
+            <Element name='institutions'>
             <section className='institutionsBg'>
                 <DecorationText texts={['Komu pomagamy?']}/>
                 <ul>
@@ -56,6 +58,7 @@ class Institutions extends React.Component {
                 </p>
                 <InstitutionsList institutions={this.state.institutionsTab}/>
             </section>
+            </Element>
         );
     }
 }

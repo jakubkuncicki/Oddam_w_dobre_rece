@@ -1,4 +1,5 @@
 import React from 'react';
+import {Element} from 'react-scroll';
 
 import DecorationText from '../../components/DecorationText/DecorationText';
 
@@ -99,6 +100,7 @@ class Contact extends React.Component {
 
     render() {
         return (
+            <Element name='contact'>
             <section className='Contact'>
                 <div className='Contact__main'>
                     <div className='Contact__main_box'>
@@ -133,6 +135,7 @@ class Contact extends React.Component {
                     </div>
                 </footer>
             </section>
+            </Element>
         );
     }
 }

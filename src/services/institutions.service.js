@@ -3,12 +3,21 @@ import { FOUNDATIONS, ORGANIZATIONS, COLLECTIONS } from "../constants/cacheItems
 
 export class InstitutionsData {
 
+    static instanceVal = null;
+
+    static get instance() {
+        if (!this.instanceVal) {
+            this.instanceVal = new InstitutionsData();
+        }
+
+        return this.instanceVal;
+    }
+
     init = () => {
         localforage.config();
 
         localforage.getItem(FOUNDATIONS).then((item) => {
 
-            console.log(item);
             if (!item) {console.log('w localforage nic jeszcze nie ma');
 
                 const foundations = [];
@@ -63,18 +72,6 @@ export class InstitutionsData {
             }
         });
     };
-
-    // getOrganizations() {
-    //     return localforage.getItem(ORGANIZATIONS);
-    // }
-    //
-    // getFoundations() {
-    //     return localforage.getItem(FOUNDATIONS);
-    // }
-    //
-    // getCollections() {
-    //     return localforage.getItem(COLLECTIONS);
-    // }
 
     getInstitutions = (institutionsType) => {
         return localforage.getItem(institutionsType);

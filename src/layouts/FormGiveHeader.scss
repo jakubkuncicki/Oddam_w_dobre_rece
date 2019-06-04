@@ -1,0 +1,69 @@
+.FormGiveHeader {
+  width: 100%;
+  height: 80vh;
+  background-image: url("header_logged_img.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.FormGiveHeader__info-container {
+  margin-right: 200px;
+  margin-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  h1 {
+    text-align: center;
+    color: #3c3c3c;
+    font-size: 4.5vh;
+    font-weight: normal;
+    font-family: 'open_sans_lightregular', sans-serif;
+  }
+
+  .fourStepsFigure {
+    width: 100%;
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-evenly;
+
+    .leaningSquare {
+      width: 130px;
+      height: 130px;
+      transform: rotate(45deg);
+      border: 1px solid #3c3c3c;
+      background-color: transparent;
+
+      &__container {
+        width: 100%;
+        height: 100%;
+        transform: rotate(-45deg);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+
+        span {
+          font-size: 24px;
+          text-align: center;
+          width: 80%;
+          box-sizing: border-box;
+          padding: 7px 0;
+          font-family: 'open_sans_lightregular', sans-serif;
+          color: #3c3c3c;
+
+          &:first-child {
+            font-weight: bold;
+            font-size: 26px;
+          }
+        }
+      }
+    }
+  }
+
+}

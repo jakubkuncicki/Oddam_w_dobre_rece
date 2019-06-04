@@ -80,10 +80,12 @@
           background-color: transparent;
           height: 40%;
           padding: 0 30px;
+          transition-duration: .3s;
 
           &:hover {
             cursor: pointer;
-            box-shadow: 0 0 10px 1px dimgray;
+            //box-shadow: 0 0 10px 1px dimgray;
+            background-color: darken(#eeefef, 5%);
           }
         }
       }

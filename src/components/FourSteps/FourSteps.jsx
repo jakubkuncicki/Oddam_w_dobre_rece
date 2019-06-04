@@ -1,15 +1,21 @@
 import React from 'react';
+import {Element} from 'react-scroll';
 
 import FourStepsColumn from '../FourStepsColumn/FourStepsColumn';
 import Btn from '../Btn/Btn';
 import DecorationText from "../DecorationText/DecorationText";
 
 import './FourSteps.scss';
+import {withRouter} from "react-router-dom";
 
 class FourSteps extends React.Component {
     // constructor(props) {
     //     super(props);
     // }
+
+    createAccount = () => {
+        this.props.history.push('/register');
+    };
 
     render() {
 
@@ -25,15 +31,19 @@ class FourSteps extends React.Component {
         });
 
         return (
+            <Element name='fourSteps'>
             <section className='fourSteps'>
                 <DecorationText texts={['Wystarczą 4 proste kroki']}/>
                 <div className='fourStepsCenter'>
                     {fourStepsColumns}
                 </div>
-                <Btn text='ZAŁÓŻ KONTO' specificWidth='21vw'/>
+                {!this.props.logged &&
+                < Btn goTo={this.createAccount} text='ZAŁÓŻ KONTO' specificWidth='21vw'/>
+                }
             </section>
+            </Element>
         );
     }
 }
 
-export default FourSteps;
+export default withRouter(FourSteps);

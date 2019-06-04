@@ -1,55 +1,34 @@
 import React from 'react';
 import {Element} from 'react-scroll';
-
-import DecorationText from '../DecorationText/DecorationText.jsx';
-import Btn from '../Btn/Btn.jsx';
-
-import './Header.scss';
+import {auth} from "../constants/authentication";
 import {withRouter} from "react-router-dom";
-import {auth} from "../../constants/authentication";
-import {Redirect} from "react-router-dom";
+import './FormGiveHeader.scss';
+import DecorationText from "../components/DecorationText/DecorationText";
 
-class Header extends React.Component{
+class FormGiveHeader extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             userMenuVisible: false,
-            goToGiveForm: false,
         };
     }
-
-    scrollTo = (name) => {
-        if(typeof this.props.scrollTo === 'function') {
-            this.props.scrollTo(name);
-        }
-    };
-
-    login = () => {
-        this.props.history.push('/login');
-    };
-
-    createAccount = () => {
-        this.props.history.push('/register');
-    };
-
-    give = () => {
-        this.setState({
-            goToGiveForm: true,
-        });
-        // this.props.history.push('/form');
-        // return <Redirect to={{pathname: '/form', state: {user: this.props.user}}}/>;
-
-    };
-
-    collect = () => {
-        this.props.history.push('/collect');
-    };
 
     showUserMenu = () => {
         this.setState({
             userMenuVisible: true,
         });
+    };
+
+    logOut = () => {
+        auth.signOut();
+        this.props.history.push('/');
+    };
+
+    scrollTo = (name) => {
+        if(typeof this.props.scrollTo === 'function') {
+            this.props.scrollTo(name);
+        }
     };
 
     hideUserMenu = (e) => {
@@ -60,21 +39,10 @@ class Header extends React.Component{
         }
     };
 
-    logOut = () => {
-        auth.signOut();
-        this.props.history.push('/');
-    };
-
     render() {
-
-        if(this.state.goToGiveForm) {
-            return <Redirect to={{pathname: '/form', state: {user: this.props.user}}}/>;
-        }
-
         return (
             <Element name='welcome'>
-            <div onClick={this.hideUserMenu} className='headerSection'>
-                <header>
+                <header className='FormGiveHeader' onClick={this.hideUserMenu}>
                     <nav className='nav'>
                         {!this.props.logged &&
                         <ul className='menu upperMenu'>
@@ -104,18 +72,40 @@ class Header extends React.Component{
                             <li><button className='a' onClick={() => this.scrollTo('contact')}>Kontakt</button></li>
                         </ul>
                     </nav>
-                </header>
-                <div className='headerStart'>
-                    <DecorationText texts={['Zacznij pomagać!', 'Oddaj niechciane rzeczy w zaufane ręce']}/>
-                    <div className='StartBtns'>
-                        <Btn goTo={this.give} text='ODDAJ RZECZY'/>
-                        <Btn goTo={this.collect} text='ZORGANIZUJ ZBIÓRKĘ'/>
+                    <div className='FormGiveHeader__info-container'>
+                        <DecorationText texts={['Oddaj rzeczy, których już nie chcesz', 'POTRZEBUJĄCYM']}/>
+                        <h1>Wystarczą 4 proste kroki:</h1>
+                        <div className='fourStepsFigure'>
+                            <div className='leaningSquare'>
+                                <div className='leaningSquare__container'>
+                                    <span>1</span>
+                                    <span>Wybierz rzeczy</span>
+                                </div>
+                            </div>
+                            <div className='leaningSquare'>
+                                <div className='leaningSquare__container'>
+                                    <span>2</span>
+                                    <span>Spakuj je w worki</span>
+                                </div>
+                            </div>
+                            <div className='leaningSquare'>
+                                <div className='leaningSquare__container'>
+                                    <span>3</span>
+                                    <span>Wybierz fundację</span>
+                                </div>
+                            </div>
+                            <div className='leaningSquare'>
+                                <div className='leaningSquare__container'>
+                                    <span>4</span>
+                                    <span>Zamów Kuriera</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                </header>
             </Element>
         );
     }
 }
 
-export default withRouter(Header);
+export default withRouter(FormGiveHeader);
