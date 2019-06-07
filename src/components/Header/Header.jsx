@@ -6,17 +6,30 @@ import Btn from '../Btn/Btn.jsx';
 
 import './Header.scss';
 import {withRouter} from "react-router-dom";
-import {auth} from "../../constants/authentication";
 import {Redirect} from "react-router-dom";
+import { UsersData } from "../../services/usersData.service";
 
 class Header extends React.Component{
 
     constructor(props){
         super(props);
         this.state = {
+            user: null,
             userMenuVisible: false,
             goToGiveForm: false,
         };
+
+        this.usersData = UsersData.instance;
+    }
+
+    componentDidMount() {
+        this.usersData.getCurrentUser().then((user) => {
+            console.log(user);
+
+            this.setState({
+                user,
+            })
+        });
     }
 
     scrollTo = (name) => {
@@ -61,13 +74,12 @@ class Header extends React.Component{
     };
 
     logOut = () => {
-        auth.signOut();
+        this.usersData.signOut();
         this.props.history.push('/');
     };
 
     render() {
-
-        if(this.state.goToGiveForm) {
+        if (this.state.goToGiveForm) {
             return <Redirect to={{pathname: '/form', state: {user: this.props.user}}}/>;
         }
 
@@ -76,15 +88,15 @@ class Header extends React.Component{
             <div onClick={this.hideUserMenu} className='headerSection'>
                 <header>
                     <nav className='nav'>
-                        {!this.props.logged &&
+                        {!this.state.user &&
                         <ul className='menu upperMenu'>
                             <li><button onClick={this.login} className='a'>Zaloguj</button></li>
                             <li><button onClick={this.createAccount} className='a'>Załóż konto</button></li>
                         </ul>
                         }
-                        {this.props.logged &&
+                        {this.state.user &&
                         <ul className='menu upperMenu'>
-                            <li className='userName'>Witaj {this.props.user.name}</li>
+                            <li className='userName'>Witaj {this.state.user.name}</li>
                             <li id='settings'>
                                 <i onClick={this.showUserMenu} className="fas fa-cog"/>
                                 <ul id='userMenu' className={'drop-down-menu' + (this.state.userMenuVisible ? ' active' : '')}>

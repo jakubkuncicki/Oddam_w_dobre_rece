@@ -33,8 +33,13 @@ export function Gift() {
     };
 }
 
-export class UsersData {
+export const ACTIVE_USER_PERSISTENCE_KEY = 'user';
+export const USERS_PERSISTENCE_KEY = 'users';
 
+// Error codes
+export const INVALID_USERNAME_PASSWORD = 'invalid username or password';
+
+export class UsersData {
     static instanceVal = null;
 
     static get instance() {
@@ -45,24 +50,30 @@ export class UsersData {
         return this.instanceVal;
     }
 
-    init = () => {
+    init() {
         localforage.config();
-        localforage.getItem('users').then((users) => {
-            if(!users) {
-                let testUser = {name: 'Kuba', email: 'jakub.kuncicki@gmail.com', password: '123456'};
+        localforage.getItem(USERS_PERSISTENCE_KEY).then((users) => {
+            if (!users) {
+                let testUser = new User('Kuba', 'jakub.kuncicki@gmail.com', '123456');
                 let initUsers = [testUser];
-                localforage.setItem('users', initUsers);
+
+                localforage.setItem(USERS_PERSISTENCE_KEY, initUsers);
             }
         });
     };
 
+    getCurrentUser() {
+        return localforage.getItem(ACTIVE_USER_PERSISTENCE_KEY).then((user) => {
+           return user || null;
+        });
+    }
+
     getUsers = () => {
-        return localforage.getItem('users');
+        return localforage.getItem(USERS_PERSISTENCE_KEY);
     };
 
     hasUserAccount = (email, password, users) => {
-
-        if(users !== null) {
+        if (users !== null) {
 
             for (let i = 0; i < users.length; i++) {
                 if (email === users[i].email && password === users[i].password) {
@@ -72,7 +83,6 @@ export class UsersData {
         }
 
         return false;
-
 
         // return this.getUsers().then((users) => {
         //
@@ -88,11 +98,9 @@ export class UsersData {
         //
         // return false;
         // });
-
     };
 
     getUser = (email) => {
-
         return this.getUsers().then((users) => {
             for(let i = 0; i < users.length; i++) {
                 if(users[i].email === email) {
@@ -118,7 +126,7 @@ export class UsersData {
         user.id = this.setUserId();
         return this.getUsers().then((users) => {
             users.push(user);
-            return localforage.setItem('users', users);
+            return localforage.setItem(USERS_PERSISTENCE_KEY, users);
         });
     };
 
@@ -127,9 +135,27 @@ export class UsersData {
             for(let i = 0; i < users.length; i++) {
                 if(users[i].email === email) {
                     users[i].gifts.push(gift);
-                    return localforage.setItem('users', users);
+                    return localforage.setItem(USERS_PERSISTENCE_KEY, users);
                 }
             }
         });
     };
+
+    signIn(username, password) {
+        return this.getUsers().then((users) => {
+            const userExists = this.hasUserAccount(username, password, users);
+
+            if (userExists) {
+               return this.getUser(username).then((user) => {
+                   return localforage.setItem(ACTIVE_USER_PERSISTENCE_KEY, user)
+               });
+            }
+
+            throw new Error(INVALID_USERNAME_PASSWORD);
+        });
+    }
+
+    signOut() {
+        return localforage.removeItem(ACTIVE_USER_PERSISTENCE_KEY);
+    }
 }

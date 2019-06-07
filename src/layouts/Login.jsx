@@ -1,8 +1,7 @@
 import React from 'react';
-import {Redirect, withRouter} from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import DecorationText from "../components/DecorationText/DecorationText";
-import {auth} from "../constants/authentication";
-import {UsersData, validateEmail} from "../services/usersData.service";
+import { INVALID_USERNAME_PASSWORD, UsersData, validateEmail } from "../services/usersData.service";
 import './Login.scss';
 
 class Login extends React.Component {
@@ -16,9 +15,11 @@ class Login extends React.Component {
             emailErrInfo: '',
             passwordErrInfo: '',
             user: {},
-            userFound: false,
+            userLoggedIn: false,
         };
         this.users = [];
+
+        this.usersData = UsersData.instance;
     }
 
     componentDidMount() {
@@ -43,11 +44,10 @@ class Login extends React.Component {
         }
     };
 
-    checkUser = (e) => {
-
+    checkUserAndLogin() {
         let isErr = false;
 
-        if(this.state.email === ''){
+        if (this.state.email === ''){
             this.setState({
                 emailErr: true,
                 emailErrInfo: 'To pole jest wymagane',
@@ -64,7 +64,8 @@ class Login extends React.Component {
                 emailErr: false,
             });
         }
-        if(this.state.password === '') {
+
+        if (this.state.password === '') {
             this.setState({
                 passwordErr: true,
                 passwordErrInfo: 'To pole jest wymagane',
@@ -76,52 +77,72 @@ class Login extends React.Component {
             });
         }
 
-        if(!isErr) {
+        if (!isErr) {
+            return this.usersData.signIn(this.state.email, this.state.password).then(() => {
+                return false;
+            }).catch((err) => {
+                if (err.message === INVALID_USERNAME_PASSWORD) {
+                    this.setState({
+                        emailErr: true,
+                        emailErrInfo: 'Nieprawidłowe hasło lub email',
+                        passwordErr: true,
+                        passwordErrInfo: 'Nieprawidłowe hasło lub email'
+                    });
 
+                    return true;
+                } else {
+                    //  Tu będzie generyczny błąd
+                    // this.setState({
+                    //     emailErr: true,
+                    //     emailErrInfo: 'Nieprawidłowe hasło lub email',
+                    //     passwordErr: true,
+                    //     passwordErrInfo: 'Nieprawidłowe hasło lub email'
+                    // });
 
-            if(UsersData.instance.hasUserAccount(this.state.email, this.state.password, this.users)) {
-                auth.signIn();
-                this.setState({
-                    emailErr: false,
-                    passwordErr: false,
-                });
-            } else {
-                e.preventDefault();
-                this.setState({
-                    emailErr: true,
-                    emailErrInfo: 'Nieprawidłowe hasło lub email',
-                    passwordErr: true,
-                    passwordErrInfo: 'Nieprawidłowe hasło lub email'
-                });
-            }
+                    return true;
+                }
+            });
+
+            // if (UsersData.instance.hasUserAccount(this.state.email, this.state.password, this.users)) {
+            //     auth.signIn();
+            //     this.setState({
+            //         emailErr: false,
+            //         passwordErr: false,
+            //     });
+            // } else {
+            //     e.preventDefault();
+            //     this.setState({
+            //         emailErr: true,
+            //         emailErrInfo: 'Nieprawidłowe hasło lub email',
+            //         passwordErr: true,
+            //         passwordErrInfo: 'Nieprawidłowe hasło lub email'
+            //     });
+            // }
 
         } else {
-            e.preventDefault();
+            return Promise.resolve(isErr);
         }
-
     };
 
-    goToStartPage = (e) => {
+    checkLogin = (e) => {
         e.preventDefault();
-        UsersData.instance.getUser(this.state.email).then((user) => {
-            this.setState({
-                userFound: true,
-                user: user,
-            });
+
+        return this.checkUserAndLogin().then((errored) => {
+           if (!errored) {
+               this.setState({
+                   userLoggedIn: true,
+               });
+           }
         });
     };
 
     render() {
-
-        // console.log(this.props.location.state.from);
-
-        if(this.state.userFound) {
-            let user = this.state.user;
-            console.log(user);
-            if(this.props.location && this.props.location.state && this.props.location.state.from) {
-                return <Redirect to={{pathname: this.props.location.state.from.pathname, state: {user: user}}}/>;
+        if (this.state.userLoggedIn) {
+            if (this.props.location && this.props.location.state && this.props.location.state.from) {
+                return <Redirect to={this.props.location.state.from.pathname}/>;
             }
-            return <Redirect to={{pathname: '/start', state: {user: user}}}/>;
+
+            return <Redirect to='/start'/>;
         }
 
         return (
@@ -137,7 +158,7 @@ class Login extends React.Component {
                 </div>
                 <div className='Login__form-container'>
                     <DecorationText texts={['Zaloguj się']}/>
-                    <form onSubmit={(e) => this.goToStartPage(e)}>
+                    <form onSubmit={this.checkLogin}>
                         <div className='input-container'>
                             <input name='email' type='email' placeholder='Email' value={this.state.email} onChange={this.changeInput}/>
                             <p>{this.state.emailErr && this.state.emailErrInfo}</p>
@@ -151,7 +172,7 @@ class Login extends React.Component {
                         </div>
                         <div className='btns-container'>
                             <button>Załóż konto</button>
-                            <input type='submit' value='Zaloguj się' onClick={this.checkUser}/>
+                            <input type='submit' value='Zaloguj się'/>
                         </div>
                     </form>
                 </div>
