@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Oddam_w_dobre_rece/static/css/main.9caf03d7.chunk.css",
+    "main.js": "/Oddam_w_dobre_rece/static/js/main.6965ac6a.chunk.js",
+    "main.js.map": "/Oddam_w_dobre_rece/static/js/main.6965ac6a.chunk.js.map",
+    "runtime~main.js": "/Oddam_w_dobre_rece/static/js/runtime~main.dfd15aad.js",
+    "runtime~main.js.map": "/Oddam_w_dobre_rece/static/js/runtime~main.dfd15aad.js.map",
+    "static/js/2.7667e28c.chunk.js": "/Oddam_w_dobre_rece/static/js/2.7667e28c.chunk.js",
+    "static/js/2.7667e28c.chunk.js.map": "/Oddam_w_dobre_rece/static/js/2.7667e28c.chunk.js.map",
+    "index.html": "/Oddam_w_dobre_rece/index.html",
+    "precache-manifest.0a4a1bd56ced7202c81b48dc6327e896.js": "/Oddam_w_dobre_rece/precache-manifest.0a4a1bd56ced7202c81b48dc6327e896.js",
+    "service-worker.js": "/Oddam_w_dobre_rece/service-worker.js",
+    "static/css/main.9caf03d7.chunk.css.map": "/Oddam_w_dobre_rece/static/css/main.9caf03d7.chunk.css.map",
+    "static/media/Stats.scss": "/Oddam_w_dobre_rece/static/media/Bg.d184db2c.jpg",
+    "static/media/About.scss": "/Oddam_w_dobre_rece/static/media/about.0e48fc7f.jpg",
+    "static/media/FormGivePage.scss": "/Oddam_w_dobre_rece/static/media/bg.e5c092b7.jpg",
+    "static/media/Contact.scss": "/Oddam_w_dobre_rece/static/media/footer_bg_img.74c24148.jpg",
+    "static/media/FormGiveHeader.scss": "/Oddam_w_dobre_rece/static/media/header_logged_img.85c98296.jpg",
+    "static/media/Header.scss": "/Oddam_w_dobre_rece/static/media/header_start_img.2c60c6fe.jpg",
+    "static/media/App.scss": "/Oddam_w_dobre_rece/static/media/opensans-regular.addd60af.woff2"
+  }
+}
