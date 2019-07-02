@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect, withRouter } from 'react-router-dom';
-import DecorationText from "../components/DecorationText/DecorationText";
-import { INVALID_USERNAME_PASSWORD, UsersData, validateEmail } from "../services/usersData.service";
+import DecorationText from "../../components/DecorationText/DecorationText";
+import { INVALID_USERNAME_PASSWORD, UsersData, validateEmail } from "../../services/usersData.service";
 import './Login.scss';
 
 class Login extends React.Component {
@@ -14,17 +14,19 @@ class Login extends React.Component {
             passwordErr: false,
             emailErrInfo: '',
             passwordErrInfo: '',
-            user: {},
             userLoggedIn: false,
         };
-        this.users = [];
 
         this.usersData = UsersData.instance;
     }
 
     componentDidMount() {
-        UsersData.instance.getUsers().then((result) => {
-            this.users = result;
+        this.usersData.getCurrentUser().then((user) => {
+            if(user) {
+                this.setState({
+                    userLoggedIn: true,
+                });
+            }
         });
     }
 
@@ -139,10 +141,10 @@ class Login extends React.Component {
     render() {
         if (this.state.userLoggedIn) {
             if (this.props.location && this.props.location.state && this.props.location.state.from) {
-                return <Redirect to={this.props.location.state.from.pathname}/>;
+                return <Redirect to={{pathname: this.props.location.state.from.pathname, state: {from: this.props.location}}}/>;
             }
 
-            return <Redirect to='/start'/>;
+            return <Redirect to={{pathname: '/start', state: {from: this.props.location}}}/>;
         }
 
         return (
@@ -171,7 +173,7 @@ class Login extends React.Component {
                             </div>
                         </div>
                         <div className='btns-container'>
-                            <button>Załóż konto</button>
+                            <button type='button' onClick={() => this.goTo('register')}>Załóż konto</button>
                             <input type='submit' value='Zaloguj się'/>
                         </div>
                     </form>

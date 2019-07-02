@@ -1,7 +1,7 @@
-import FormGive from "../layouts/FormGive";
-import FormCollect from "../layouts/FormCollect"
-import Register from "../layouts/Register";
-import Login from "../layouts/Login";
+import FormGive from "../layouts/FormGive/FormGive";
+import FormCollect from "../layouts/FormCollect/FormCollect"
+import Register from "../layouts/Register/Register";
+import Login from "../layouts/Login/Login";
 
 export const pageRoutes = [{
     route: 'login',

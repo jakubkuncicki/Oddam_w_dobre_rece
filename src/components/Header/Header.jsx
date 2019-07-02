@@ -17,6 +17,7 @@ class Header extends React.Component{
             user: null,
             userMenuVisible: false,
             goToGiveForm: false,
+            goToLandingPage: false,
         };
 
         this.usersData = UsersData.instance;
@@ -24,7 +25,6 @@ class Header extends React.Component{
 
     componentDidMount() {
         this.usersData.getCurrentUser().then((user) => {
-            console.log(user);
 
             this.setState({
                 user,
@@ -47,9 +47,11 @@ class Header extends React.Component{
     };
 
     give = () => {
+
         this.setState({
             goToGiveForm: true,
         });
+
         // this.props.history.push('/form');
         // return <Redirect to={{pathname: '/form', state: {user: this.props.user}}}/>;
 
@@ -74,13 +76,25 @@ class Header extends React.Component{
     };
 
     logOut = () => {
-        this.usersData.signOut();
-        this.props.history.push('/');
+        this.usersData.signOut().then(() => {
+            this.setState({
+                goToLandingPage: true,
+            });
+        });
+        // this.props.history.push('/');
     };
 
     render() {
         if (this.state.goToGiveForm) {
-            return <Redirect to={{pathname: '/form', state: {user: this.props.user}}}/>;
+            return <Redirect to='/form'/>;
+        }
+
+        // if(this.state.user && this.props.location.pathname === '/') {
+        //     return <Redirect to='/start'/>;
+        // }
+
+        if(this.state.goToLandingPage) {
+            return <Redirect to='/'/>;
         }
 
         return (
@@ -96,9 +110,9 @@ class Header extends React.Component{
                         }
                         {this.state.user &&
                         <ul className='menu upperMenu'>
-                            <li className='userName'>Witaj {this.state.user.name}</li>
+                            <li className='userName'><button className='a'>Witaj {this.state.user.name}</button></li>
                             <li id='settings'>
-                                <i onClick={this.showUserMenu} className="fas fa-cog"/>
+                                <button className='a' onClick={this.showUserMenu}><i className="fas fa-cog"/></button>
                                 <ul id='userMenu' className={'drop-down-menu' + (this.state.userMenuVisible ? ' active' : '')}>
                                     <li className='drop-down-menu__item'>Profil</li>
                                     <li className='drop-down-menu__item'>Ustawienia</li>

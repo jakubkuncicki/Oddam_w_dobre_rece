@@ -1,0 +1,33 @@
+.FormLastPage {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  &__container {
+    margin-left: 180px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__text-line {
+      box-sizing: border-box;
+      text-align: center;
+      padding: 10px 0;
+      font-family: 'open_sans_lightregular', sans-serif;
+      color: #3c3c3c;
+      font-size: 36px;
+    }
+
+    &__decoration {
+      margin-top: 10px;
+      background-image: url("decoration.png");
+      height: 30px;
+      width: 65%;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+  }
+}

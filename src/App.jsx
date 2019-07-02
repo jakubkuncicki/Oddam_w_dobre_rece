@@ -5,10 +5,10 @@ import {InstitutionsData} from "./services/institutions.service";
 
 import './App.scss';
 import {pageRoutes, sectionRoutes} from "./constants/routes";
-import LandingPage from "./layouts/LandingPage";
-import StartPage from "./layouts/StartPage";
+import LandingPage from "./layouts/LandingPage/LandingPage";
+import StartPage from "./layouts/StartPage/StartPage";
 import {PrivateRoute} from "./components/PrivateRoute";
-import NotFound from "./components/NotFound";
+import NotFound from "./components/NotFound/NotFound";
 import {UsersData} from "./services/usersData.service";
 
 // export const institutions = new InstitutionsData();

@@ -9,9 +9,6 @@ import './FourSteps.scss';
 import {withRouter} from "react-router-dom";
 
 class FourSteps extends React.Component {
-    // constructor(props) {
-    //     super(props);
-    // }
 
     createAccount = () => {
         this.props.history.push('/register');
@@ -38,7 +35,9 @@ class FourSteps extends React.Component {
                     {fourStepsColumns}
                 </div>
                 {!this.props.logged &&
-                < Btn goTo={this.createAccount} text='ZAŁÓŻ KONTO' specificWidth='21vw'/>
+                <div className='fourSteps__btn-container'>
+                    < Btn goTo={this.createAccount} text='ZAŁÓŻ KONTO' specificWidth='21vw'/>
+                </div>
                 }
             </section>
             </Element>

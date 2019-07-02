@@ -4,11 +4,19 @@
   background-color: white;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
 
+  &__btn-container {
+    height: 17vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
   .fourStepsCenter {
-    height: 35vh;
+    margin-top: 3vh;
+    height: 43vh;
     width: 70vw;
     background-color: #ebebeb;
     display: flex;

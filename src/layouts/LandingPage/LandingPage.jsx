@@ -2,14 +2,23 @@ import React from 'react';
 import {scroller} from "react-scroll/modules";
 import { withRouter } from "react-router-dom";
 
-import Header from "../components/Header/Header";
-import Stats from "../components/Stats/Stats";
-import FourSteps from "../components/FourSteps/FourSteps";
-import About from "../components/About/About";
-import Institutions from "../components/Institutions/Institutions";
-import Contact from "../components/Contact/Contact";
+import Header from "../../components/Header/Header";
+import Stats from "../../components/Stats/Stats";
+import FourSteps from "../../components/FourSteps/FourSteps";
+import About from "../../components/About/About";
+import Institutions from "../../components/Institutions/Institutions";
+import Contact from "../../components/Contact/Contact";
+import {UsersData} from "../../services/usersData.service";
+import {Redirect} from "react-router-dom";
 
 class LandingPage extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            user: null,
+        };
+    }
 
     scrollTo = (name) => {
 
@@ -40,11 +49,19 @@ class LandingPage extends React.Component {
         if(path.indexOf('contact') !== -1) {
             return 'contact';
         }
-        return '/';
+        return 'welcome';
 
     };
 
     componentDidMount() {
+
+        UsersData.instance.getCurrentUser().then((user) => {
+
+            this.setState({
+                user,
+            })
+        });
+
         scroller.scrollTo(this.nameFromPath(this.props.history.location.pathname), {
             duration: 800,
             delay: 0,
@@ -53,6 +70,11 @@ class LandingPage extends React.Component {
     }
 
     render() {
+
+        if(this.state.user) {
+            return <Redirect to='/start'/>;
+        }
+
         return (
             <div>
                 <Header scrollTo={this.scrollTo} logged={false}/>

@@ -6,7 +6,9 @@
   justify-content: space-between;
   align-items: center;
   width: 16vh;
-  height: 24vh;
+  height: 27vh;
+  box-sizing: border-box;
+  padding-bottom: 3vh;
 
   .fourStepsColumn__container {
     height: 17vh;
@@ -61,6 +63,7 @@
     font-size: 1.7vh;
     color: #3c3c3c;
     text-align: center;
+    line-height: 1.4;
   }
 
 }

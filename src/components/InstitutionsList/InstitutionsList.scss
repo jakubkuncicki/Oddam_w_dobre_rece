@@ -6,9 +6,11 @@
   width: 70%;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
+  padding-bottom: 2vh;
 
   &__list {
-    flex: 9;
+    flex: 8;
     width: 100%;
 
     .institutionRow {
@@ -19,9 +21,9 @@
       .institutionName {
 
         h3 {
-          font-family: 'open_sansregular', sans-serif;
-          font-weight: normal;
-          font-size: 3vh;
+          font-family: 'merriweather_lightregular', sans-serif;
+          font-weight: 300;
+          font-size: 2.7vh;
           color: #3c3c3c;
           text-align: left;
         }
@@ -29,29 +31,33 @@
         p {
           margin-top: 1vh;
           font-family: 'merriweather_lightitalic', sans-serif;
-          font-size: 1.5vh;
+          font-size: 1.8vh;
           color: #3c3c3c;
           text-align: left;
-          width: 26vw;
+          width: 32vw;
         }
       }
 
       .institutionDescription {
         box-sizing: border-box;
         padding-top: 4vh;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
 
         p {
-          font-family: 'open_sansregular', sans-serif;
-          font-size: 1.5vh;
+          font-family: 'merriweather_lightregular', sans-serif;
+          font-size: 1.8vh;
           color: #3c3c3c;
           text-align: right;
         }
       }
 
       .line {
+        margin-top: 2vh;
         height: 1vh;
-        width: 100%;
-        border-width: 0 0 0.2vh;
+        width: 28vw;
+        border-width: 0 0 0.1vh;
         border-style: solid;
         border-color: #3c3c3c;
       }
@@ -59,10 +65,11 @@
   }
 
   .pageNumbers {
-    flex: 1;
+    flex: 2;
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
 
     span {
       margin: 0 1vw;

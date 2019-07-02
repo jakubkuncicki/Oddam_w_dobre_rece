@@ -54,6 +54,16 @@
     cursor: pointer;
   }
 
+  &.userName {
+    font-family: 'open_sansregular', sans-serif;
+    font-size: 1.7vh;
+    color: #3c3c3c;
+
+    button.a:hover {
+      cursor: initial;
+    }
+  }
+
   &.userName:hover {
     cursor: initial;
     border: 1px solid transparent;
@@ -100,6 +110,7 @@
 }
 
 #settings:hover {
+  cursor: initial;
   border: 1px solid transparent;
 }
 

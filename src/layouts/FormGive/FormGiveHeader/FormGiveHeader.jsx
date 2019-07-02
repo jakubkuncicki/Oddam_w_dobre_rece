@@ -1,17 +1,30 @@
 import React from 'react';
-import {Element} from 'react-scroll';
-import {auth} from "../constants/authentication";
+import {Element} from 'react-scroll/modules';
 import {withRouter} from "react-router-dom";
 import './FormGiveHeader.scss';
-import DecorationText from "../components/DecorationText/DecorationText";
+import {Redirect} from "react-router-dom";
+import {UsersData} from "../../../services/usersData.service";
+import DecorationText from "../../../components/DecorationText/DecorationText";
 
 class FormGiveHeader extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
+            user: null,
             userMenuVisible: false,
+            goToLandingPage: false,
         };
+
+        this.usersData = UsersData.instance;
+    }
+
+    componentDidMount() {
+        this.usersData.getCurrentUser().then((user) => {
+            this.setState({
+                user,
+            })
+        });
     }
 
     showUserMenu = () => {
@@ -21,8 +34,11 @@ class FormGiveHeader extends React.Component {
     };
 
     logOut = () => {
-        auth.signOut();
-        this.props.history.push('/');
+        this.usersData.signOut().then(() => {
+            this.setState({
+                goToLandingPage: true,
+            });
+        });
     };
 
     scrollTo = (name) => {
@@ -40,21 +56,26 @@ class FormGiveHeader extends React.Component {
     };
 
     render() {
+
+        if(this.state.goToLandingPage) {
+            return <Redirect to='/'/>;
+        }
+
         return (
             <Element name='welcome'>
                 <header className='FormGiveHeader' onClick={this.hideUserMenu}>
                     <nav className='nav'>
-                        {!this.props.logged &&
+                        {!this.state.user &&
                         <ul className='menu upperMenu'>
                             <li><button onClick={this.login} className='a'>Zaloguj</button></li>
                             <li><button onClick={this.createAccount} className='a'>Załóż konto</button></li>
                         </ul>
                         }
-                        {this.props.logged &&
+                        {this.state.user &&
                         <ul className='menu upperMenu'>
-                            <li className='userName'>Witaj {this.props.user.name}</li>
+                            <li className='userName'><button className='a'>Witaj {this.state.user.name}</button></li>
                             <li id='settings'>
-                                <i onClick={this.showUserMenu} className="fas fa-cog"/>
+                                <button className='a'><i onClick={this.showUserMenu} className="fas fa-cog"/></button>
                                 <ul id='userMenu' className={'drop-down-menu' + (this.state.userMenuVisible ? ' active' : '')}>
                                     <li className='drop-down-menu__item'>Profil</li>
                                     <li className='drop-down-menu__item'>Ustawienia</li>

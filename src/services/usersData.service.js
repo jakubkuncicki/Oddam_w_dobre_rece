@@ -1,4 +1,5 @@
 import localforage from 'localforage';
+import {Institution} from "./institutions.service";
 
 export function validateEmail(email) {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -6,6 +7,7 @@ export function validateEmail(email) {
 }
 
 export function User(name, email, password) {
+    this.id = 0;
     this.name = name;
     this.email = email;
     this.password = password;
@@ -18,8 +20,7 @@ export function Gift() {
     this.realized = false;
     this.giftType = '';
     this.bagsNumber = 0;
-    this.institutionName = '';
-    this.institutionId = '';
+    this.institution = new Institution('','','','','');
     this.address = {
         street: '',
         city: '',
@@ -35,6 +36,7 @@ export function Gift() {
 
 export const ACTIVE_USER_PERSISTENCE_KEY = 'user';
 export const USERS_PERSISTENCE_KEY = 'users';
+export const ACTIVE_GIFT_PERSISTENCE_KEY = 'gift';
 
 // Error codes
 export const INVALID_USERNAME_PASSWORD = 'invalid username or password';
@@ -68,6 +70,21 @@ export class UsersData {
         });
     }
 
+    getCurrentGift() {
+        return localforage.getItem(ACTIVE_GIFT_PERSISTENCE_KEY).then((gift) => {
+            return gift || null;
+        })
+    }
+
+    setNewGift() {
+        return this.getCurrentUser().then((user) => {
+            if(user) {
+                const newGift = new Gift();
+                return localforage.setItem(ACTIVE_GIFT_PERSISTENCE_KEY, newGift);
+            }
+        });
+    }
+
     getUsers = () => {
         return localforage.getItem(USERS_PERSISTENCE_KEY);
     };
@@ -84,20 +101,6 @@ export class UsersData {
 
         return false;
 
-        // return this.getUsers().then((users) => {
-        //
-        //     for(let i = 0; i < users.length; i++) {
-        //     if(email === users[i].email) {
-        //         if(password === users[i].password){
-        //             console.log('password and email correct');
-        //             return true;
-        //         }
-        //     }
-        // }
-        //     console.log('password and email incorrect');
-        //
-        // return false;
-        // });
     };
 
     getUser = (email) => {
@@ -122,24 +125,37 @@ export class UsersData {
         });
     };
 
-    saveUser = (user) => {
+    saveNewUser = (name, email, password) => {
+        const user = new User(name, email, password);
         user.id = this.setUserId();
         return this.getUsers().then((users) => {
             users.push(user);
-            return localforage.setItem(USERS_PERSISTENCE_KEY, users);
+            localforage.setItem(USERS_PERSISTENCE_KEY, users);
+            return localforage.setItem(ACTIVE_USER_PERSISTENCE_KEY, user);
         });
     };
 
-    saveGift = (email, gift) => {
-        return this.getUsers().then((users) => {
-            for(let i = 0; i < users.length; i++) {
-                if(users[i].email === email) {
-                    users[i].gifts.push(gift);
-                    return localforage.setItem(USERS_PERSISTENCE_KEY, users);
-                }
+    saveGift = (gift) => {
+        return this.getCurrentUser().then((user) => {
+            if(user) {
+                user.gifts.push(gift);
+                localforage.removeItem(ACTIVE_GIFT_PERSISTENCE_KEY);
+                localforage.setItem(ACTIVE_USER_PERSISTENCE_KEY, user);
+                this.getUsers().then((users) => {
+                    for (let i = 0; i < users.length; i++) {
+                        if (users[i].id === user.id) {
+                            users[i] = user;
+                            return localforage.setItem(USERS_PERSISTENCE_KEY, users);
+                        }
+                    }
+                });
             }
         });
     };
+
+    savePartialGift(gift) {
+        return localforage.setItem(ACTIVE_GIFT_PERSISTENCE_KEY, gift);
+    }
 
     signIn(username, password) {
         return this.getUsers().then((users) => {
@@ -147,7 +163,7 @@ export class UsersData {
 
             if (userExists) {
                return this.getUser(username).then((user) => {
-                   return localforage.setItem(ACTIVE_USER_PERSISTENCE_KEY, user)
+                   return localforage.setItem(ACTIVE_USER_PERSISTENCE_KEY, user);
                });
             }
 
@@ -155,7 +171,26 @@ export class UsersData {
         });
     }
 
+    saveUserChanges() {
+        return this.getCurrentUser().then((user) => {
+            if(user) {
+                this.getUsers().then((users) => {
+                    for(let i = 0; i < users.length; i++) {
+                        if(users[i].id === user.id) {
+                            users[i] = user;
+                            return localforage.setItem(USERS_PERSISTENCE_KEY, users);
+                        }
+                    }
+
+                });
+            }
+        });
+    }
+
     signOut() {
-        return localforage.removeItem(ACTIVE_USER_PERSISTENCE_KEY);
+        return this.saveUserChanges().then(() => {
+            localforage.removeItem(ACTIVE_GIFT_PERSISTENCE_KEY);
+            return localforage.removeItem(ACTIVE_USER_PERSISTENCE_KEY);
+        });
     }
 }
