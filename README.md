@@ -1,5 +1,5 @@
 ---
-permalink: /index.html
+permalink: /public/index.html
 ---
 # Oddam w dobre ręce
 
