@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d6a1ef985723ea30a62fcf883073b97c",
+    "revision": "b92ac5787cbe35fddc667b52a3ceac5b",
     "url": "/Oddam_w_dobre_rece/index.html"
   },
   {
-    "revision": "6e4628f5dd7ca3546bf9",
-    "url": "/Oddam_w_dobre_rece/static/css/main.9caf03d7.chunk.css"
+    "revision": "9f38aa80e77c5d2ddb8e",
+    "url": "/Oddam_w_dobre_rece/static/css/main.3740be44.chunk.css"
   },
   {
-    "revision": "b4e915114ebe872f61e2",
-    "url": "/Oddam_w_dobre_rece/static/js/2.7667e28c.chunk.js"
+    "revision": "70ff07c7053be7462994",
+    "url": "/Oddam_w_dobre_rece/static/js/2.2420f9e0.chunk.js"
   },
   {
-    "revision": "6e4628f5dd7ca3546bf9",
-    "url": "/Oddam_w_dobre_rece/static/js/main.6965ac6a.chunk.js"
+    "revision": "9f38aa80e77c5d2ddb8e",
+    "url": "/Oddam_w_dobre_rece/static/js/main.9f29530a.chunk.js"
   },
   {
     "revision": "a973c81f9a3474e62695",
