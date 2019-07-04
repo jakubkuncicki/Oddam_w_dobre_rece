@@ -1,6 +1,6 @@
 import React from 'react';
-import {HashRouter as Router, Route, Switch} from "react-router-dom";
-import {createHashHistory} from "history";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+// import {createHashHistory} from "history";
 
 import {InstitutionsData} from "./services/institutions.service";
 
@@ -12,7 +12,7 @@ import {PrivateRoute} from "./components/PrivateRoute";
 import NotFound from "./components/NotFound/NotFound";
 import {UsersData} from "./services/usersData.service";
 
-const history = createHashHistory();
+// const history = createHashHistory({basename: "/Oddam_w_dobre_rece"});
 
 // export const institutions = new InstitutionsData();
 InstitutionsData.instance.init();
@@ -22,7 +22,7 @@ class App extends React.Component {
 
     render() {
         return (
-            <Router history={history}>
+            <Router basename={process.env.PUBLIC_URL}>
                 <Switch>
                     <Route exact path='/' component={LandingPage}/>
                     {
